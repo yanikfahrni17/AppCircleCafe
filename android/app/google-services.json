@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "494869507219",
+    "firebase_url": "https://appcirclecafe.firebaseio.com",
+    "project_id": "appcirclecafe",
+    "storage_bucket": "appcirclecafe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494869507219:android:e47a8810c9f6ba08ddb166",
+        "android_client_info": {
+          "package_name": "com.appcirclecafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494869507219-vhh3ivitv752p8norn074j4kvqu6i5ep.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appcirclecafe",
+            "certificate_hash": "9d99fb730da6f054fd008eb017ca8cb948b2d0e5"
+          }
+        },
+        {
+          "client_id": "494869507219-d1ja55fvlf4hoaqrc8fh1ashqdof5qvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMozPnTQ1NNdMdXw1aiFBbwf7vTRA0gHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494869507219-d1ja55fvlf4hoaqrc8fh1ashqdof5qvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
