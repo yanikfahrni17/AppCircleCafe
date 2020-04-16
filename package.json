@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@react-native-community/cli-platform-android": "^4.2.3",
+    "@react-native-community/cli-platform-ios": "^4.2.3",
     "@react-native-community/masked-view": "^0.1.7",
     "@react-native-firebase/app": "6.3.4",
     "@react-navigation/material-top-tabs": "^5.1.1",
