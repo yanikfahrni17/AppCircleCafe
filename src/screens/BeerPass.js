@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, FlatList, ScrollView } from 'react-native';
-import NfcManager, {NfcEvents, Ndef} from 'react-native-nfc-manager';
-import Icon from 'react-native-vector-icons/Ionicons';
-
+//import NfcManager, {NfcEvents, Ndef} from 'react-native-nfc-manager';
+//import Icon from 'react-native-vector-icons/Ionicons';
+/*
 const DATA = [
   {
     id: 1,
@@ -59,11 +59,11 @@ function Item(){
         <Icon name="md-beer" size={50} color="#999" solid />
       </View>
     )
-  }
+  }*/
 class BeerPass extends React.Component {
 
   state = {count: 0, voucher: 3};
-
+/*
   renderList(){
     return(
       <FlatList
@@ -152,7 +152,7 @@ class BeerPass extends React.Component {
     NfcManager.setEventListener(NfcEvents.DiscoverTag, null);
     NfcManager.unregisterTagEvent().catch(() => 0);
   }
-
+*/
   render() {
     return (
       <ScrollView style={{padding: 20}}>
@@ -172,13 +172,13 @@ class BeerPass extends React.Component {
         </TouchableOpacity>
 
        
-        {this.renderList()}   
+          
         <Text>Counter: {this.state.count}</Text>
         <Text>Vouchers: {this.state.voucher}</Text>
 
         <Text style={{fontSize: 20, marginTop: 20, marginBottom: 20}}>Deine Gutscheine</Text>
 
-        {this.renderVouchers()}
+        
 
       </ScrollView>
     )
