@@ -42,7 +42,7 @@ function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Events" component={EventList} />
-        <Tab.Screen name="Bierpass" component={BeerPass} />
+        <Tab.Screen name="Drinkpass" component={BeerPass} />
         <Tab.Screen name="Login" component={LoginScreen} />
       </Tab.Navigator>
     </NavigationContainer>

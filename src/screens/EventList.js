@@ -16,13 +16,9 @@ class EventList extends Component {
       }
 
     renderUpcomingEvents() {
-      if(this.state.events.length > 1){
-        console.log('no events');
-      }else{
         return this.state.events.map(event => 
             <EventDetail key={event.FID} event={event} />
         );
-      }
     }
     renderPastEvents(){
         axios.get('https://circlecafe.ch/PastEvents').then(response => this.setState({events: [...this.state.events, ...response.data]}));
@@ -51,12 +47,16 @@ class EventList extends Component {
     
   render() {
       return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View>
+      <View style={{backgroundColor: 'white', padding: 20, height: 60, flexDirection: 'row', justifyContent: 'flex-end' }}>
+        <Text style={{textAlign: 'left', marginRight: 20}}>Vergangene Events einblenden</Text>
         <Switch
          onValueChange = {this.toggleSwitch}
          value = {this.state.infoSwitch}/>
+      </View>  
+        
       <ScrollView>{this.renderUpcomingEvents()}
-
+{/*
       <TouchableHighlight onPress={() => {this.renderPastEvents()}} 
         style={{
             backgroundColor: '#fff',
@@ -70,7 +70,7 @@ class EventList extends Component {
             paddingBottom: 10
         }}>
           <Text>Vergangene Events anzeigen</Text>
-      </TouchableHighlight>
+      </TouchableHighlight>*/}
 
       </ScrollView>
     </View>
