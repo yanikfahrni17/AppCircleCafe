@@ -1,16 +1,20 @@
 import React from 'react';
 import { Text, View, Image, Linking, TouchableHighlight} from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
 import Card from '../components/Card';
 import CardSection from '../components/CardSection';
 import Button from '../components/Button';
+import Detail from './Detail';
+
 
 const EventDetail = ({event}) => {
   const {FID, fb_eventname, fb_description, fb_start_time, fb_end_time, fb_location, fb_image} = event;
   const {thumbnailStyle, headerContentStyle, thumbnailContainerStyle, headerTextStyle, imageStyle} = styles;
-
   return (
-      <Card>      
-
+ 
+      <Card>   
             <CardSection>
                 <View styles={headerContentStyle}>
                     <Text style={headerTextStyle}>{fb_eventname}</Text>
@@ -24,8 +28,13 @@ const EventDetail = ({event}) => {
             </CardSection>
 
           <CardSection>
+              {/*
               <Button onPress={() => Linking.openURL('https://circlecafe.ch')}>
                   Details
+              </Button>
+              */}
+                <Button onPress={() => navigation.navigate('EventDetail', {screen: 'Detail'})}>
+                  Mehr
               </Button>
           </CardSection>
       </Card>
@@ -50,5 +59,15 @@ const styles = {
       width: null
   }
 };
+
+const Stack = createStackNavigator();
+function EventDetailScreen(){
+    return(
+        <Stack.Navigator>
+            <Stack.Screen name="EventDetail" component={EventDetail} />
+            <Stack.Screen name="Detail" component={Detail} />
+        </Stack.Navigator>  
+    )
+}
 
 export default EventDetail;

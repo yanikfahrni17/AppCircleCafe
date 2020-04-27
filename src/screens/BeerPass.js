@@ -288,6 +288,7 @@ class BeerPass extends React.Component {
     return (
       <View>
       <ScrollView style={{ padding: 20 }}>
+        {/*
         <TouchableOpacity
           style={{
             padding: 10,
@@ -300,7 +301,7 @@ class BeerPass extends React.Component {
         >
           <Text>Beer scannen</Text>
         </TouchableOpacity>
-{/*
+
         <TouchableOpacity
           style={{
             padding: 10,
