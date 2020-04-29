@@ -1,43 +1,39 @@
 import React from 'react';
-import { Text, View, Image, Linking, TouchableHighlight} from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-
+import { Text, View, Image, TouchableOpacity} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Moment from 'react-moment';
+import 'moment-timezone';
+import 'moment/locale/de-ch';
 
 import Card from '../components/Card';
 import CardSection from '../components/CardSection';
-import Button from '../components/Button';
-import Detail from './Detail';
+import CardSectionImage from '../components/CardSectionImage';
 
 
-const EventDetail = ({event}) => {
+const EventDetail = ({ event}) => {
   const {FID, fb_eventname, fb_description, fb_start_time, fb_end_time, fb_location, fb_image} = event;
   const {thumbnailStyle, headerContentStyle, thumbnailContainerStyle, headerTextStyle, imageStyle} = styles;
-  return (
+  const navigation = useNavigation();
  
+  return (
+    <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate('Detail', {eventdetail: event, name: fb_eventname})}>
       <Card>   
-            <CardSection>
-                <View styles={headerContentStyle}>
-                    <Text style={headerTextStyle}>{fb_eventname}</Text>
-                </View>
-            </CardSection>
-            <CardSection>
-                <Image 
-                    style={imageStyle}
-                    source={{uri: fb_image}}
-                />
-            </CardSection>
-
-          <CardSection>
-              {/*
-              <Button onPress={() => Linking.openURL('https://circlecafe.ch')}>
-                  Details
-              </Button>
-              */}
-                <Button onPress={() => navigation.navigate('EventDetail', {screen: 'Detail'})}>
-                  Mehr
-              </Button>
-          </CardSection>
+        <CardSectionImage>
+            <Image 
+                style={imageStyle}
+                source={{uri: fb_image}}
+            />
+        </CardSectionImage>
+        <CardSection>
+            <View styles={headerContentStyle}>
+                <Text style={headerTextStyle}>{fb_eventname}</Text>
+                <Text>
+                    <Moment element={Text} format="LL" locale="de-ch">{fb_start_time}</Moment> ab <Moment element={Text} format="LT" locale="de-ch">{fb_start_time}</Moment>
+                </Text>
+            </View>
+        </CardSection>
       </Card>
+    </TouchableOpacity>
   );
 };
 
@@ -47,7 +43,8 @@ const styles = {
       justifyContent: 'space-around'
   },
   headerTextStyle:{
-      fontSize: 18
+      fontSize: 18,
+      color: '#333',
   },
   thumbnailStyle :{
       height: 100,
@@ -59,15 +56,5 @@ const styles = {
       width: null
   }
 };
-
-const Stack = createStackNavigator();
-function EventDetailScreen(){
-    return(
-        <Stack.Navigator>
-            <Stack.Screen name="EventDetail" component={EventDetail} />
-            <Stack.Screen name="Detail" component={Detail} />
-        </Stack.Navigator>  
-    )
-}
 
 export default EventDetail;

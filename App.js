@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import firebase from '@react-native-firebase/app';
@@ -16,6 +16,7 @@ import firebase from '@react-native-firebase/app';
 import EventList from './src/screens/EventList';
 import BeerPass from './src/screens/BeerPass';
 import MieteScreen from './src/screens/MieteScreen';
+import Detail from './src/screens/Detail';
 
 
 
@@ -39,6 +40,16 @@ const firebaseCredentials = Platform.select({
 const Tab = createMaterialTopTabNavigator();
 const Infos = 'https://stackoverflow.com/questions/51786940/react-native-dynamically-created-components-not-rendering-on-first-click';
 
+const EventListStack = createStackNavigator();
+function EventListStackScreen(){
+  return (
+    <EventListStack.Navigator>
+      <EventListStack.Screen name="Events" component={EventList} options={{headerShown: false}}/>
+      <EventListStack.Screen name="Detail" component={Detail} 
+      options={({ route }) => ({ title: route.params.name, headerTitleStyle: {fontSize: 16, fontWeight: 'bold'}})} />
+    </EventListStack.Navigator>
+  )
+}
 
 function App() {
   return (
@@ -51,7 +62,7 @@ function App() {
                 indicatorStyle: {backgroundColor: '#fcba03'},
               }}
       >
-        <Tab.Screen name="Events" component={EventList} />
+        <Tab.Screen name="Events" component={EventListStackScreen} />
         <Tab.Screen name="Drinkpass" component={BeerPass} />
         <Tab.Screen name="Miete" component={MieteScreen} />
       </Tab.Navigator>

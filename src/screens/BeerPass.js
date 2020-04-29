@@ -7,13 +7,13 @@ import {
   StyleSheet,
   FlatList,
   ScrollView,
-  AsyncStorage,
   NativeModules,
   AppState,
 } from "react-native";
-//import {AsyncStorage} from "@react-native-community/react-native-storage";
+import AsyncStorage from "@react-native-community/async-storage";
 import NfcManager, { NfcEvents, Ndef } from "react-native-nfc-manager";
 import Icon from "react-native-vector-icons/Ionicons";
+
 import {numberOfBeers, numberOfDrinks} from '../data/data.js';
 import NFCModal from '../components/NFCModal';
 
@@ -106,7 +106,7 @@ class BeerPass extends React.Component {
     if(this.state.voucher == 0 && this.state.voucherDrinks == 0){
       console.log('no vouchers');
       return(
-        <Text>Du hast momentan keine Gutscheine</Text>
+        <Text style={{color: '#666', marginLeft: 10, fontSize: 14}}>Du hast momentan keine Gutscheine</Text>
       );
     }else{
     const output = [];
@@ -118,22 +118,30 @@ class BeerPass extends React.Component {
           key={y}
           style={{
             padding: 10,
-            borderWidth: 1,
-            borderColor: "#999",
+            borderWidth: 2,
+            backgroundColor: '#fff',
+            borderColor: '#ddd',
+            borderBottomWidth: 0,
+            shadowColor: '#000',
+            shodowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.1,
+            shadowRadius: 2,
+            elevation: 1,
             marginTop: 20,
             marginBottom: 10,
           }}
         >
           <View>
-            <Text style={{ fontSize: 20, height: 30 }}>
+            <Text style={{ fontSize: 20, height: 30, color: '#333' }}>
               Gutschein für ein Bier
             </Text>
-            <Text style={{ fontSize: 14, height: 45 }}>
+            <Text style={{ fontSize: 14, height: 50, color: '#333' }}>
                Der Gutschein wird durch das Klicken auf den Button
-              'einlösen' verschwinden und verliert seine Gültigkeit.
+              "Einlösen" verschwinden und verliert seine Gültigkeit.
             </Text>
             <View>
               <FlatList
+              
               data={numberOfBeers}
               horizontal={false}
               numColumns={10}
@@ -160,19 +168,26 @@ class BeerPass extends React.Component {
           key={y+x}
           style={{
             padding: 10,
-            borderWidth: 1,
-            borderColor: "#999",
+            borderWidth: 2,
+            backgroundColor: '#fff',
+            borderColor: '#ddd',
+            borderBottomWidth: 0,
+            shadowColor: '#000',
+            shodowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.1,
+            shadowRadius: 2,
+            elevation: 1,
             marginTop: 20,
             marginBottom: 10,
           }}
         >
           <View>
-            <Text style={{ fontSize: 20, height: 30 }}>
+            <Text style={{ fontSize: 20, height: 30, color: '#333' }}>
               Gutschein für ein Drink
             </Text>
-            <Text style={{ fontSize: 14, height: 45 }}>
+            <Text style={{ fontSize: 14, height: 45, color: '#333'}}>
               Der Gutschein wird durch das Klicken auf den Button
-              'einlösen' verschwinden und verliert seine Gültigkeit.
+              "Einlösen" verschwinden und verliert seine Gültigkeit.
             </Text>
           </View>
           <View>
@@ -287,7 +302,7 @@ class BeerPass extends React.Component {
   render() {
     return (
       <View>
-      <ScrollView style={{ padding: 20 }}>
+      <ScrollView style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 20, paddingBottom: 20 }}>
         {/*
         <TouchableOpacity
           style={{
@@ -314,16 +329,16 @@ class BeerPass extends React.Component {
         >
           <Text>Scan abbrechen</Text>
         </TouchableOpacity>*/}
-        <Text style={{ fontSize: 20}}>Bier</Text>
+        <Text style={{ fontSize: 20, color: '#333', marginLeft: 10}}>Bier</Text>
         {this.renderList()}
-        <Text style={{marginTop: 20, fontSize: 20}}>Longdrinks</Text>
+        <Text style={{marginTop: 20, fontSize: 20, color: '#333', marginLeft: 10}}>Longdrinks</Text>
         {this.renderDrinks()}
         {/*}
         <Text>CounterBeer: {this.state.count}</Text>
         <Text>Vouchers: {this.state.voucher}</Text>
         <Text>CounterDrinks: {this.state.countDrinks}</Text>
       <Text>VoucherDrinks: {this.state.voucherDrinks}</Text>*/}
-        <Text style={{ fontSize: 28, marginTop: 10, marginBottom: 20 }}>
+        <Text style={{ fontSize: 28, marginTop: 10, marginBottom: 10, color: '#333', marginLeft: 10 }}>
           Deine Gutscheine
         </Text>
 

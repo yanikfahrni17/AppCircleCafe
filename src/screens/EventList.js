@@ -1,18 +1,16 @@
-import React, { Component, useState } from 'react';
-import { Text, View, ScrollView, TextInput, Button, TouchableHighlight, Switch } from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, ScrollView, Switch, StatusBar } from 'react-native';
 import axios from 'axios';
-
 import EventDetail from './EventDetail';
-
-
+let textEvents = 'Bevorstehende Events';
 
 class EventList extends Component {
 
     state = { events: [], infoSwitch: false };
     
+    
     componentDidMount(){
         axios.get('https://circlecafe.ch/UpcomingEvents').then(response => this.setState({ events: response.data })); 
-
       }
 
     renderUpcomingEvents() {
@@ -40,38 +38,27 @@ class EventList extends Component {
       this.setState({infoSwitch: value});
       if (this.state.infoSwitch === true) {
         axios.get('https://circlecafe.ch/UpcomingEvents').then(response => this.setState({events: response.data}));
+        textEvents = 'Bevorstehende Events';
       } else {
         axios.get('https://circlecafe.ch/EventList').then(response => this.setState({events: response.data}));
+        textEvents = 'Alle Events';
       }
     };
+
     
   render() {
       return (
     <View>
+      <StatusBar backgroundColor="#333" />
       <View style={{backgroundColor: 'white', padding: 20, height: 60, flexDirection: 'row', justifyContent: 'flex-end' }}>
         <Text style={{textAlign: 'left', marginRight: 20}}>Vergangene Events einblenden</Text>
         <Switch
          onValueChange = {this.toggleSwitch}
          value = {this.state.infoSwitch}/>
       </View>  
-        
-      <ScrollView>{this.renderUpcomingEvents()}
-{/*
-      <TouchableHighlight onPress={() => {this.renderPastEvents()}} 
-        style={{
-            backgroundColor: '#fff',
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: '#007aff',
-            marginLeft: 5,
-            marginRight: 5,
-            marginTop: 20,
-            paddingTop: 10,
-            paddingBottom: 10
-        }}>
-          <Text>Vergangene Events anzeigen</Text>
-      </TouchableHighlight>*/}
-
+      <ScrollView>
+      <Text style={{fontSize: 24, color: '#333', marginLeft: 20, marginTop: 10}}>{textEvents}</Text>
+        {this.renderUpcomingEvents()}
       </ScrollView>
     </View>
     );
