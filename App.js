@@ -6,17 +6,21 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Button } from 'react-native';
+import React, { Component, useEffect } from 'react';
+import { Platform } from 'react-native';
+import AsyncStorage from "@react-native-community/async-storage";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import firebase from '@react-native-firebase/app';
+import messaging from '@react-native-firebase/messaging';
+
 
 import EventList from './src/screens/EventList';
 import BeerPass from './src/screens/BeerPass';
 import MieteScreen from './src/screens/MieteScreen';
 import Detail from './src/screens/Detail';
+import Settings from './src/screens/Settings';
 
 
 
@@ -26,16 +30,6 @@ import Detail from './src/screens/Detail';
 //    2) rebuild your app via `yarn run run:android` or `yarn run run:ios`
 //    3) import the package here in your JavaScript code: `import '@react-native-firebase/auth';`
 //    4) The Firebase Auth service is now available to use here: `firebase.auth().currentUser`
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\nCmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\nShake or press menu button for dev menu',
-});
-
-const firebaseCredentials = Platform.select({
-  ios: 'https://invertase.link/firebase-ios',
-  android: 'https://invertase.link/firebase-android',
-});
 
 const Tab = createMaterialTopTabNavigator();
 const Infos = 'https://stackoverflow.com/questions/51786940/react-native-dynamically-created-components-not-rendering-on-first-click';
@@ -47,11 +41,21 @@ function EventListStackScreen(){
       <EventListStack.Screen name="Events" component={EventList} options={{headerShown: false}}/>
       <EventListStack.Screen name="Detail" component={Detail} 
       options={({ route }) => ({ title: route.params.name, headerTitleStyle: {fontSize: 16, fontWeight: 'bold'}})} />
+      <EventListStack.Screen name="Settings" component={Settings} options={{headerTitle: 'Push-Einstellungen'}} />
     </EventListStack.Navigator>
   )
 }
-
 function App() {
+  useEffect(() => {
+    requestUserPermission();
+  });
+  const requestUserPermission = async () => {
+    const settings = await messaging().requestPermission();
+  
+    if (settings) {
+      console.log('Permission settings:', settings);
+    }
+  }
   return (
     <NavigationContainer>
       <Tab.Navigator

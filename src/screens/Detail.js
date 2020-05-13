@@ -9,6 +9,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import Card from '../components/Card';
 import CardSection from '../components/CardSection';
+import CardSectionLink from '../components/CardSectionLink';
 import CardSectionImage from '../components/CardSectionImage';
 
 const utcDateToString = (momentInUTC: moment): string => {
@@ -38,15 +39,17 @@ const Detail = ({route}) => {
                     </Text>
             </CardSection>
             <TouchableOpacity onPress={() => Linking.openURL('https://goo.gl/maps/uRhhoBz7LJLicmQq7')}>
-                <CardSection>
-                    <Icon style={{marginRight: 10, marginTop: 5}} name="md-pin" size={25} color="#333" solid />
-                    <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}> Dorfstrasse 1A, 3506 Grosshöchstetten</Text> 
-                </CardSection>
+            <View style={styles.containerStyle}>
+            <View style={{flexDirection: 'row', alignItem: 'center'}}>
+              <Icon style={{marginRight: 10, alignSelf: 'center'}} name="md-pin" size={25} color="#333" solid />
+              <Text style={{fontSize: 16, color: '#333', alignSelf: 'center'}}>Dorfstrasse 1A, 3506 Grosshöchstetten</Text>
+            </View>
+            <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
+          </View>
             </TouchableOpacity>
         </Card>
 
         <TouchableOpacity style={styles.addToCalendarButton} onPress={() => {addToCalendar(eventdetail.fb_eventname, eventdetail.fb_start_time, eventdetail.fb_end_time, eventdetail.fb_description)}}>
-            
             <Text style={styles.addToCalendarText}><Icon name="ios-calendar" size={20} color="#333" solid />  Zum Kalender hinzufügen</Text>
         </TouchableOpacity>
     </View>   
@@ -106,6 +109,19 @@ const styles = {
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10,
+    },
+    containerStyle:{
+        borderBottomWidth: 1,
+        paddingTop: 13,
+        paddingBottom: 13,
+        paddingLeft: 10,
+        paddingRight: 0,
+        backgroundColor: '#fff',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        borderColor: '#ddd',
+        position: 'relative'
     }
   };
 export default Detail;

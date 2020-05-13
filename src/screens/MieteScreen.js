@@ -5,7 +5,7 @@ import { SliderBox } from "react-native-image-slider-box";
 
 import Card from '../components/Card';
 import CardSection from '../components/CardSection';
-import Button from '../components/Button';
+import CardSectionLink from '../components/CardSectionLink';
 import CardSectionImage from '../components/CardSectionImage';
 
 class MieteScreen extends Component {
@@ -111,36 +111,52 @@ class MieteScreen extends Component {
       <Text style={styles.headerTextStyle}>Kontaktmöglichkeiten</Text>
       <Card>
       <TouchableOpacity onPress={() => Linking.openURL('https://goo.gl/maps/uRhhoBz7LJLicmQq7')}>
-          <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="md-pin" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}> Dorfstrasse 1A, 3506 Grosshöchstetten</Text> 
-          </CardSection>
+          <CardSectionLink>
+            <View style={{flexDirection: 'row', alignItem: 'center'}}>
+              <Icon style={{marginRight: 10, alignSelf: 'center'}} name="md-pin" size={25} color="#333" solid />
+              <Text style={{fontSize: 16, color: '#333', alignSelf: 'center'}}>Dorfstrasse 1A, 3506 Grosshöchstetten</Text>
+            </View>
+            <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
+          </CardSectionLink>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => Linking.openURL('mailto:info@circlecafe.ch')}>
-          <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="ios-mail" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}> info@circlecafe.ch</Text> 
-          </CardSection>
+        <CardSectionLink>
+            <View style={{flexDirection: 'row', alignItem: 'center'}}>
+              <Icon style={{marginRight: 10, alignSelf: 'center'}} name="ios-mail" size={25} color="#333" solid />
+              <Text style={{fontSize: 16, color: '#333', alignSelf: 'center'}}>info@circlecafe.ch</Text>
+            </View>
+            <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
+          </CardSectionLink>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => Linking.openURL('tel:0795499884')}>
-          <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="ios-call" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}> 079 549 98 84</Text> 
-          </CardSection>
+        <CardSectionLink>
+            <View style={{flexDirection: 'row', alignItem: 'center'}}>
+              <Icon style={{marginRight: 10, alignSelf: 'center'}} name="ios-call" size={25} color="#333" solid />
+              <Text style={{fontSize: 16, color: '#333', alignSelf: 'center'}}>079 549 98 84</Text>
+            </View>
+            <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
+          </CardSectionLink>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => Linking.openURL('https://circlecafe.ch')}>
-          <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="md-globe" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>www.circlecafe.ch</Text> 
-          </CardSection>
+        <CardSectionLink>
+            <View style={{flexDirection: 'row', alignItem: 'center'}}>
+              <Icon style={{marginRight: 10, alignSelf: 'center'}} name="md-globe" size={25} color="#333" solid />
+              <Text style={{fontSize: 16, color: '#333', alignSelf: 'center'}}>www.circlecafe.ch</Text>
+            </View>
+            <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
+          </CardSectionLink>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => Linking.openURL('https://circlecafe.ch/miete')}>
-          <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="md-calendar" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>Reservation erfassen</Text> 
-          </CardSection>
+          <CardSectionLink>
+            <View style={{flexDirection: 'row', alignItem: 'center'}}>
+              <Icon style={{marginRight: 10, alignSelf: 'center'}} name="md-calendar" size={25} color="#333" solid />
+              <Text style={{fontSize: 16, color: '#333', alignSelf: 'center'}}>Reservation erfassen</Text>
+            </View>
+            <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
+          </CardSectionLink>
         </TouchableOpacity>
       </Card>
+      <View style={{marginTop: 10}}></View>
     </ScrollView>
   );
   };
