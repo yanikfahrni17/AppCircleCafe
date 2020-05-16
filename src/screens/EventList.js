@@ -17,7 +17,7 @@ class EventList extends Component {
             this.setState({noData: true});
           }else{
             this.setState({noData: false});
-            console.log('componentDidMount axios durchlaufen und auf false gesetzt')
+            //console.log('componentDidMount axios durchlaufen und auf false gesetzt')
             this.setState({ events: response.data });
           }
         }).then(() => {this.setState({isLoading: false})}); 
@@ -31,13 +31,13 @@ class EventList extends Component {
           </View>
         )
       };
-      console.log('vor if abfrage:' + this.state.noData);
+      //console.log('vor if abfrage:' + this.state.noData);
       if(this.state.noData === false){
         return this.state.events.map(event => 
           <EventDetail key={event.FID} event={event} />
       )
       }else{
-        console.log('else:' + this.state.events.length);
+        //console.log('else:' + this.state.events.length);
         return <Text style={{marginLeft: 20}}>Momentan sind keine bevorstehenden Events geplant.</Text>
       }
     }

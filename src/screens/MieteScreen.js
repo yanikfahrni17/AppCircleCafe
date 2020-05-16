@@ -50,7 +50,7 @@ class MieteScreen extends Component {
             />
         </CardSectionImage>
         <CardSection>
-          <Text style={{fontSize: 14, color: '#333'}}>Ob Geburtstag, Teamanlass oder Klassenzusammenkunft der Gewölbekeller kann für jeden Anlass gemietet werden. </Text>
+          <Text style={{fontSize: 16, color: '#333', textAlign: 'center'}}>Ob Geburtstag, Teamanlass oder Klassenzusammenkunft der Gewölbekeller kann für jeden Anlass gemietet werden. </Text>
         </CardSection>
       </Card>
       <Text style={styles.headerTextStyle}>Ausstattung</Text>

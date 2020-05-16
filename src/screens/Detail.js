@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Image, Text, Linking, TouchableOpacity} from 'react-native';
+import {ScrollView, View,Image, Text, Linking, TouchableOpacity} from 'react-native';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import 'moment/locale/de-ch';
@@ -9,7 +9,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import Card from '../components/Card';
 import CardSection from '../components/CardSection';
-import CardSectionLink from '../components/CardSectionLink';
 import CardSectionImage from '../components/CardSectionImage';
 
 const utcDateToString = (momentInUTC: moment): string => {
@@ -21,7 +20,7 @@ const utcDateToString = (momentInUTC: moment): string => {
 const Detail = ({route}) => {
     const {eventdetail}  = route.params;
     return(
-    <View>
+    <ScrollView>
       <Text style={{textAlign: 'center', fontSize: 20, color: '#333', marginTop: 20}}>{eventdetail.fb_eventname}</Text>
         <Card>   
             <CardSectionImage>
@@ -52,16 +51,14 @@ const Detail = ({route}) => {
           </View>
             </TouchableOpacity>
         </Card>
-
         <TouchableOpacity style={styles.addToCalendarButton} onPress={() => {addToCalendar(eventdetail.fb_eventname, eventdetail.fb_start_time, eventdetail.fb_end_time, eventdetail.fb_description)}}>
             <Text style={styles.addToCalendarText}><Icon name="ios-calendar" size={20} color="#333" solid />  Zum Kalender hinzufügen</Text>
         </TouchableOpacity>
-    </View>   
+        <View style={{marginTop: 20}}></View>
+    </ScrollView>   
     
     )
 }
-
-
 function addToCalendar(title, startDate, endDate, description){
     const eventConfig = {
       title,
@@ -72,15 +69,8 @@ function addToCalendar(title, startDate, endDate, description){
     };
 
     AddCalendarEvent.presentEventCreatingDialog(eventConfig)
-      .then((eventInfo: { calendarItemIdentifier: string, eventIdentifier: string }) => {
-        // handle success - receives an object with `calendarItemIdentifier` and `eventIdentifier` keys, both of type string.
-        // These are two different identifiers on iOS.
-        // On Android, where they are both equal and represent the event id, also strings.
-        // when { action: 'CANCELED' } is returned, the dialog was dismissed
-        //console.warn(JSON.stringify(eventInfo));
-      })
+      .then((eventInfo: { calendarItemIdentifier: string, eventIdentifier: string }) => {})
       .catch((error: string) => {
-        // handle error such as when user rejected permissions
         console.warn(error);
       });
   };

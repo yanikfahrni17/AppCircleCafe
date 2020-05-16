@@ -106,15 +106,15 @@ class BeerPass extends React.Component {
 
   renderVouchers() {
     if(this.state.voucher == 0 && this.state.voucherDrinks == 0){
-      console.log('no vouchers');
+      //console.log('no vouchers');
       return(
         <Text style={{color: '#666', marginLeft: 10, fontSize: 14}}>Du hast momentan keine Gutscheine</Text>
       );
     }else{
     const output = [];
-    console.log("hello");
+    //console.log("hello");
     for (var y = 0; y < this.state.voucher; y++) {
-      console.log('beergutscheine:' + y);
+      //console.log('beergutscheine:' + y);
       let tempItem = (
         <View
           key={y}
@@ -160,11 +160,11 @@ class BeerPass extends React.Component {
           </TouchableOpacity>
         </View>
       );
-      console.log('voucher Beer');
+      //console.log('voucher Beer');
       output[y] = tempItem;
     }
     for(var x = 0; x < this.state.voucherDrinks; x++){
-      console.log('drinkgutscheine:' + x);
+      //console.log('drinkgutscheine:' + x);
       let tempDrink = (
         <View
           key={y+x}
@@ -210,7 +210,7 @@ class BeerPass extends React.Component {
           </TouchableOpacity>
         </View>
       );
-      console.log('voucher drink');
+      //console.log('voucher drink');
       output[y + x] = tempDrink;
     }
     return output;
@@ -219,17 +219,17 @@ class BeerPass extends React.Component {
 
   openSettings() {
     NativeModules.OpenSettings.openNetworkSettings(data => {
-      console.log('call back data', data);
+      //console.log('call back data', data);
     });
   }
 
   async componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
     if (Platform.OS === 'android'){
-      console.log('android');
+      //console.log('android');
       NfcManager.isEnabled()
         .then(enabled => {
-            console.log('nfc enabled:' + enabled);
+            //console.log('nfc enabled:' + enabled);
             if(enabled === false){
               this.setState({isHidden: false});
             }else{
@@ -237,10 +237,10 @@ class BeerPass extends React.Component {
             }
         })
         .catch(err => {
-            console.log(err);
+            //console.log(err);
         })
     }
-    console.log('componentdidMount');
+    //console.log('componentdidMount');
     await this._retrieveData();
     await this._retrieveVoucher();    
     await this._retrieveDataDrinks();
@@ -270,18 +270,18 @@ class BeerPass extends React.Component {
           this.setState({ count: this.state.count + 1 });
           this._storeData(this.state.count);
           if (this.state.count == 10) {
-            console.log("10 erreicht");
+            //console.log("10 erreicht");
             this.setState({ voucher: this.state.voucher + 1 });
             this.setState({ count: 0 });
             this._storeData(0);
             this._storeVoucher(this.state.voucher);
           }
         } else if (myArray == "drink"){
-            console.log('1 Drink');
+            //console.log('1 Drink');
             this.setState({ countDrinks: this.state.countDrinks + 1 });
             this._storeDataDrinks(this.state.countDrinks);
             if (this.state.countDrinks == 10){
-              console.log('10 Drinks erreicht');
+              //console.log('10 Drinks erreicht');
               this.setState({ voucherDrinks: this.state.voucherDrinks + 1 });
               this.setState({ countDrinks: 0 });
               this._storeDataDrinks(0);
@@ -304,7 +304,7 @@ class BeerPass extends React.Component {
     return (
       <View>
       <ScrollView style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 20, paddingBottom: 20 }}>
-        {/*
+        {/* only ios
         <TouchableOpacity
           style={{
             padding: 10,
@@ -334,11 +334,6 @@ class BeerPass extends React.Component {
         {this.renderList()}
         <Text style={{marginTop: 20, fontSize: 20, color: '#333', marginLeft: 10}}>Longdrinks</Text>
         {this.renderDrinks()}
-        {/*}
-        <Text>CounterBeer: {this.state.count}</Text>
-        <Text>Vouchers: {this.state.voucher}</Text>
-        <Text>CounterDrinks: {this.state.countDrinks}</Text>
-      <Text>VoucherDrinks: {this.state.voucherDrinks}</Text>*/}
         <Text style={{ fontSize: 28, marginTop: 10, marginBottom: 10, color: '#333', marginLeft: 10 }}>
           Deine Gutscheine
         </Text>
@@ -355,35 +350,35 @@ class BeerPass extends React.Component {
   async _storeData(data) {
     try {
       var jsonOfItem = await AsyncStorage.setItem('@CircleBeerCounts', JSON.stringify(data));
-      console.log('store:' + JSON.parse(jsonOfItem));
+      //console.log('store:' + JSON.parse(jsonOfItem));
     } catch (error) {
-      console.log('store Data fails');
+      //console.log('store Data fails');
     }
   };
 
   async _storeDataDrinks(data) {
     try {
       var jsonOfItem = await AsyncStorage.setItem('@CircleDrinksCounts', JSON.stringify(data));
-      console.log('storeDrinks:' + JSON.parse(jsonOfItem));
+      //console.log('storeDrinks:' + JSON.parse(jsonOfItem));
     } catch (error) {
-      console.log('store Data fails');
+      //console.log('store Data fails');
     }
   };
 
   async _storeVoucher(beer){
     try{
       await AsyncStorage.setItem('@CircleBeerVouchers', JSON.stringify(beer));
-      console.log('store Voucher Beer:' + JSON.parse(beer));
+      //console.log('store Voucher Beer:' + JSON.parse(beer));
     } catch (error) {
-      console.log('store Voucher fails');
+      //console.log('store Voucher fails');
     }
   }
   async _storeVoucherDrinks(drink){
     try{
       await AsyncStorage.setItem('@CircleDrinksVouchers', JSON.stringify(drink));
-      console.log('store Voucher Drinks:' + JSON.parse(drink));
+      //console.log('store Voucher Drinks:' + JSON.parse(drink));
     } catch (error) {
-      console.log('store Voucher fails');
+      //console.log('store Voucher fails');
     }
   }
 
@@ -393,11 +388,11 @@ class BeerPass extends React.Component {
       if(retrievedBeer !== null){
         const beer = JSON.parse(Number(retrievedBeer));
         this.setState({count: beer});
-        console.log('retrieved Anzahl Bier:' + beer);
+        //console.log('retrieved Anzahl Bier:' + beer);
         return beer;
       }
     } catch (error) {
-      console.log('retrieve Data fails');
+      //console.log('retrieve Data fails');
     }
   };
 
@@ -407,11 +402,11 @@ class BeerPass extends React.Component {
       if(retrievedDrink !== null){
         const drink = JSON.parse(Number(retrievedDrink));
         this.setState({countDrinks: drink});
-        console.log('retrieved Anzahl Drinks:' + drink);
+        //console.log('retrieved Anzahl Drinks:' + drink);
         return drink;
       }
     } catch (error) {
-      console.log('retrieve Data fails');
+      //console.log('retrieve Data fails');
     }
   };
 
@@ -420,10 +415,10 @@ class BeerPass extends React.Component {
       const retrievedVoucherBeer = await AsyncStorage.getItem('@CircleBeerVouchers');
       const currentVouchersBeer = JSON.parse(Number(retrievedVoucherBeer));
       this.setState({voucher: currentVouchersBeer});
-      console.log('retrieved Anzahl Voucher Beer:' + currentVouchersBeer);
+      //console.log('retrieved Anzahl Voucher Beer:' + currentVouchersBeer);
       return  currentVouchersBeer;
     }catch (error){
-      console.log('retrieve Vouchers fails');
+      //console.log('retrieve Vouchers fails');
     }
   }
 
@@ -433,11 +428,11 @@ class BeerPass extends React.Component {
       if(retrievedVouchersDrink !== null){
         const currentVouchersDrink = JSON.parse(Number(retrievedVouchersDrink));
         this.setState({voucherDrinks: currentVouchersDrink});
-        console.log('retrieved Anzahl Vouchers Drink:' + currentVouchersDrink);
+        //console.log('retrieved Anzahl Vouchers Drink:' + currentVouchersDrink);
         return  currentVouchersDrink;
       }
     }catch (error){
-      console.log('retrieve Vouchers fails');
+      //console.log('retrieve Vouchers fails');
     }
   }
 
@@ -446,7 +441,7 @@ class BeerPass extends React.Component {
       this.state.appState.match(/inactive|background/) &&
       nextAppState === 'active'
     ) {
-      console.log('App has come to the foreground!');
+      //console.log('App has come to the foreground!');
       if (Platform.OS === 'android'){
         NfcManager.isEnabled()
           .then(enabled => {
@@ -467,13 +462,13 @@ class BeerPass extends React.Component {
   _hideVoucher = () => {
     this._storeVoucher(this.state.voucher - 1);
     this.setState({ voucher: this.state.voucher - 1 });
-    console.log("weg");
+    //console.log("weg");
   };
 
   _hideVoucherDrinks = () => {
     this._storeVoucherDrinks(this.state.voucherDrinks - 1);
     this.setState({ voucherDrinks: this.state.voucherDrinks - 1 });
-    console.log("weg");
+    //console.log("weg");
   };
 
   _cancel = () => {
@@ -482,7 +477,7 @@ class BeerPass extends React.Component {
 
   _test = () => {
     NfcManager.registerTagEvent();
-    console.log('scan start');
+    //console.log('scan start');
   };
 }
 
