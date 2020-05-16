@@ -32,7 +32,7 @@ const EventDetail = ({event}) => {
                     <Moment element={Text} format="LL" locale="de-ch">{fb_start_time}</Moment> ab <Moment element={Text} format="LT" locale="de-ch">{fb_start_time}</Moment>
                 </Text>
             </View>
-            <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
+            <Icon style={{alignSelf: 'center', position: 'absolute', right: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
         </View>
       </Card>
     </TouchableOpacity>
@@ -42,11 +42,12 @@ const EventDetail = ({event}) => {
 const styles = {
   headerContentStyle:{
       flexDirection: 'column',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
   },
   headerTextStyle:{
       fontSize: 18,
       color: '#333',
+      marginRight: 25,
   },
   thumbnailStyle :{
       height: 100,
@@ -64,9 +65,8 @@ const styles = {
     paddingLeft: 10,
     paddingRight: 0,
     backgroundColor: '#fff',
-    justifyContent: 'space-between',
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
     borderColor: '#ddd',
     position: 'relative'
   }

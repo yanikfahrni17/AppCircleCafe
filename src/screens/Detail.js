@@ -22,6 +22,7 @@ const Detail = ({route}) => {
     const {eventdetail}  = route.params;
     return(
     <View>
+      <Text style={{textAlign: 'center', fontSize: 20, color: '#333', marginTop: 20}}>{eventdetail.fb_eventname}</Text>
         <Card>   
             <CardSectionImage>
                 <Image 
@@ -41,8 +42,11 @@ const Detail = ({route}) => {
             <TouchableOpacity onPress={() => Linking.openURL('https://goo.gl/maps/uRhhoBz7LJLicmQq7')}>
             <View style={styles.containerStyle}>
             <View style={{flexDirection: 'row', alignItem: 'center'}}>
-              <Icon style={{marginRight: 10, alignSelf: 'center'}} name="md-pin" size={25} color="#333" solid />
-              <Text style={{fontSize: 16, color: '#333', alignSelf: 'center'}}>Dorfstrasse 1A, 3506 Grosshöchstetten</Text>
+              <Icon style={{marginRight: 15, alignSelf: 'center'}} name="md-pin" size={25} color="#333" solid />
+              <View>
+                <Text style={{fontSize: 16, color: '#333'}}>Dorfstrasse 1A</Text>
+                <Text style={{fontSize: 16, color: '#333'}}>3506 Grosshöchstetten</Text>
+              </View>
             </View>
             <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
           </View>

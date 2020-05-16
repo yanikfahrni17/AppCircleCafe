@@ -59,24 +59,24 @@ class MieteScreen extends Component {
             <SliderBox images={this.state.imagesAusstattung} style={styles.imageSliderStyle} sliderBoxHeight={250} circleLoop />
         </CardSectionImage>
         <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="ios-flame" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}> Fumoire</Text> 
+            <Icon style={styles.iconStyle} name="ios-flame" size={25} color="#333" solid />
+            <Text style={styles.textStyle}> Fumoire</Text> 
           </CardSection>
           <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="ios-easel" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>3 grosse HD Screens</Text> 
+            <Icon style={styles.iconStyle} name="ios-easel" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>3 grosse HD Screens</Text> 
           </CardSection>
           <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="md-beer" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>Bar mit Bierzapfhahn</Text> 
+            <Icon style={styles.iconStyle} name="md-beer" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>Bar mit Bierzapfhahn</Text> 
           </CardSection>
           <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="md-pizza" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>Backofen mit 4 Herdplatten</Text> 
+            <Icon style={styles.iconStyle} name="md-pizza" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>Backofen mit 4 Herdplatten</Text> 
           </CardSection>
           <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="md-today" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>Industriegeschirrspüler</Text> 
+            <Icon style={styles.iconStyle} name="md-today" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>Industriegeschirrspüler</Text> 
           </CardSection>
       </Card>
       <Text style={styles.headerTextStyle}>Multimedia</Text>
@@ -85,27 +85,27 @@ class MieteScreen extends Component {
             <SliderBox images={this.state.imagesMultimedia} style={styles.imageSliderStyle} sliderBoxHeight={250} circleLoop />
         </CardSectionImage>
         <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="ios-wifi" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>WLAN im ganzen Lokal</Text> 
+            <Icon style={styles.iconStyle} name="ios-wifi" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>WLAN im ganzen Lokal</Text> 
         </CardSection>
         <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="ios-musical-notes" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>Mixpult für Beschallungsanlage</Text> 
+            <Icon style={styles.iconStyle} name="ios-musical-notes" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>Mixpult Behringer DDM4000</Text> 
         </CardSection>
         <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="md-volume-high" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>Beschallungsanlage mit Möglichkeit für Konzerte</Text> 
+            <Icon style={styles.iconStyle} name="md-volume-high" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>Hochwertige Soundanlage im ganzen Lokal</Text> 
         </CardSection>
       </Card>
       <Text style={styles.headerTextStyle}>Getränke und Verpflegung</Text>
       <Card>
       <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="ios-wine" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>Getränke können über Bar bezogen werden</Text> 
+            <Icon style={styles.iconStyle} name="ios-wine" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>Diverse Getränke stehen zur Verfügung</Text> 
         </CardSection>
         <CardSection>
-            <Icon style={{marginRight: 10, marginTop: 5}} name="md-pizza" size={25} color="#333" solid />
-            <Text style={{fontSize: 16, marginBottom: 10, marginTop: 5,  color: '#333'}}>Cateringpartner bietet viele Angebote</Text> 
+            <Icon style={styles.iconStyle} name="md-pizza" size={25} color="#333" solid />
+            <Text style={styles.textStyle}>Cateringpartner mit vielen Angeboten</Text> 
         </CardSection>
       </Card>
       <Text style={styles.headerTextStyle}>Kontaktmöglichkeiten</Text>
@@ -113,8 +113,11 @@ class MieteScreen extends Component {
       <TouchableOpacity onPress={() => Linking.openURL('https://goo.gl/maps/uRhhoBz7LJLicmQq7')}>
           <CardSectionLink>
             <View style={{flexDirection: 'row', alignItem: 'center'}}>
-              <Icon style={{marginRight: 10, alignSelf: 'center'}} name="md-pin" size={25} color="#333" solid />
-              <Text style={{fontSize: 16, color: '#333', alignSelf: 'center'}}>Dorfstrasse 1A, 3506 Grosshöchstetten</Text>
+              <Icon style={{marginRight: 15, alignSelf: 'center'}} name="md-pin" size={25} color="#333" solid />
+              <View>
+                <Text style={{fontSize: 16, color: '#333'}}>Dorfstrasse 1A</Text>
+                <Text style={{fontSize: 16, color: '#333'}}>3506 Grosshöchstetten</Text>
+              </View>
             </View>
             <Icon style={{alignSelf: 'center', marginRight: 20}} name="ios-arrow-forward" size={30} color="#ccc" solid />
           </CardSectionLink>
@@ -184,6 +187,18 @@ const styles = {
     height: 250,
     width: null,
     marginRight: 12
-}
+  }, 
+  iconStyle:{
+    left: 12, 
+    alignSelf: 'center', 
+    position: 'absolute'
+  },
+  textStyle:{
+    fontSize: 16, 
+    marginBottom: 10, 
+    marginTop: 5, 
+    marginLeft: 35,  
+    color: '#333'
+  }
 };
 export default MieteScreen;

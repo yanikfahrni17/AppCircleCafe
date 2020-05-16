@@ -9,6 +9,7 @@ import {
   ScrollView,
   NativeModules,
   AppState,
+  Dimensions
 } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import NfcManager, { NfcEvents, Ndef } from "react-native-nfc-manager";
@@ -16,25 +17,26 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import {numberOfBeers, numberOfDrinks} from '../data/data.js';
 import NFCModal from '../components/NFCModal';
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 function Item() {
   return (
     <View style={styles.item}>
-      <Icon name="md-beer" size={50} color="#fcba03" solid />
+      <Icon name="md-beer" size={SCREEN_WIDTH * 0.13} color="#fcba03" solid />
     </View>
   );
 }
 function Item2() {
   return (
     <View style={styles.item2}>
-      <Icon name="md-beer" size={50} color="#999" solid />
+      <Icon name="md-beer" size={SCREEN_WIDTH * 0.13} color="#999" solid />
     </View>
   );
 }
 function Item3() {
   return (
     <View style={styles.item3}>
-      <Icon name="md-beer" size={20} color="#fcba03" solid />
+      <Icon name="md-beer" size={SCREEN_WIDTH * 0.055} color="#fcba03" solid />
     </View>
   );
 }
@@ -42,21 +44,21 @@ function Item3() {
 function Drink() {
   return (
     <View style={styles.item}>
-      <Icon name="md-wine" size={50} color="#fc4e03" solid />
+      <Icon name="md-wine" size={SCREEN_WIDTH * 0.13} color="#fc4e03" solid />
     </View>
   );
 }
 function Drink2() {
   return (
     <View style={styles.item2}>
-      <Icon name="md-wine" size={50} color="#999" solid />
+      <Icon name="md-wine" size={SCREEN_WIDTH * 0.13} color="#999" solid />
     </View>
   );
 }
 function Drink3() {
   return (
     <View style={styles.item3}>
-      <Icon name="md-wine" size={25} color="#fc4e03" solid />
+      <Icon name="md-wine" size={SCREEN_WIDTH * 0.065} color="#fc4e03" solid />
     </View>
   );
 }
@@ -132,16 +134,16 @@ class BeerPass extends React.Component {
           }}
         >
           <View>
-            <Text style={{ fontSize: 20, height: 30, color: '#333' }}>
+            <Text style={{ fontSize: 20, height: 30, color: '#333', textAlign: 'center' }}>
               Gutschein für ein Bier
             </Text>
-            <Text style={{ fontSize: 14, height: 50, color: '#333' }}>
+            <Text style={{ fontSize: 14, color: '#333', textAlign: 'center' }}>
                Der Gutschein wird durch das Klicken auf den Button
               "Einlösen" verschwinden und verliert seine Gültigkeit.
+              DIES NUR IN ANWESENHEIT DES BARPERSONALS MACHEN! Sonst verlierst du dein Gratisbier.
             </Text>
             <View>
               <FlatList
-              
               data={numberOfBeers}
               horizontal={false}
               numColumns={10}
@@ -182,12 +184,13 @@ class BeerPass extends React.Component {
           }}
         >
           <View>
-            <Text style={{ fontSize: 20, height: 30, color: '#333' }}>
+            <Text style={{ fontSize: 20, height: 30, color: '#333', textAlign: 'center' }}>
               Gutschein für ein Drink
             </Text>
-            <Text style={{ fontSize: 14, height: 45, color: '#333'}}>
+            <Text style={{ fontSize: 14, color: '#333', textAlign: 'center'}}>
               Der Gutschein wird durch das Klicken auf den Button
-              "Einlösen" verschwinden und verliert seine Gültigkeit.
+              "Einlösen" verschwinden und verliert seine Gültigkeit.  
+              DIES NUR IN ANWESENHEIT DES BARPERSONALS MACHEN! Sonst verlierst du dein Gratisdrink.
             </Text>
           </View>
           <View>
@@ -264,9 +267,7 @@ class BeerPass extends React.Component {
           return text[1];
         });
         if (myArray == "beer") {
-          console.log("hurra");
           this.setState({ count: this.state.count + 1 });
-          //console.log(this.state.count);
           this._storeData(this.state.count);
           if (this.state.count == 10) {
             console.log("10 erreicht");
@@ -287,7 +288,7 @@ class BeerPass extends React.Component {
               this._storeVoucherDrinks(this.state.voucherDrinks);
             }
         }else {
-          alert("falsche Karte");
+          alert("Gut probiert!","falsche Karte");
         }
       }
     });

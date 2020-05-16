@@ -40,7 +40,7 @@ function EventListStackScreen(){
     <EventListStack.Navigator>
       <EventListStack.Screen name="Events" component={EventList} options={{headerShown: false}}/>
       <EventListStack.Screen name="Detail" component={Detail} 
-      options={({ route }) => ({ title: route.params.name, headerTitleStyle: {fontSize: 16, fontWeight: 'bold'}})} />
+      options={({ route }) => ({ title: 'Infos', headerTitleStyle: {fontSize: 16, fontWeight: 'bold'}})} />
       <EventListStack.Screen name="Settings" component={Settings} options={{headerTitle: 'Push-Einstellungen'}} />
     </EventListStack.Navigator>
   )
